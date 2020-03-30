@@ -1,13 +1,13 @@
 @extends('layout')
 
-@section('title','Transaksi')
+@section('title','Order')
 
 @section('content')
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Transaksi</h1>
+                <h1>Order</h1>
             </div>
         </div>
     </div><!-- /.container-fluid -->
@@ -17,15 +17,17 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-body">
+            <div class="clearfix st-btn-add">
+                <button type="button" class="btn st-btn-info float-right" data-toggle="modal" data-target="#modalTambahProduk"><i class="fas fa-plus"></i> Tambah produk</button>
+            </div>
             <table class="table table-bordered table-hover" id="product-table">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Pelanggan</th>
-                        <th>No Rekening</th>
-                        <th>Alamat Kirim</th>
-                        <th>Total</th>
-                        <th>Status</th>
+                        <th>Gambar</th>
+                        <th>Nama</th>
+                        <th>Harga</th>
+                        <th>Jumlah</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -38,6 +40,61 @@
     <!-- /.card-footer-->
     </div>
     <!-- /.card -->
+
+    <!-- modal tambah produk-->
+    <div class="modal fade" id="modalTambahProduk">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form method="POST" action="{{ route('add-produk') }}" enctype="multipart/form-data">
+            <div class="modal-header">
+              <h4 class="modal-title">Tambah Produk</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                  <label for="kodeProduk">Kode Produk</label>
+                  <input name="kode_produk" type="text" class="form-control" placeholder="kode produk">
+              </div>
+              <div class="form-group">
+                  <label for="namaProduk">Nama Produk</label>
+                  <input name="nama" type="text" class="form-control" placeholder="nama produk">
+              </div>
+              <div class="form-group">
+                  <label for="harga">Harga</label>
+                  <input name="harga" type="number" class="form-control" placeholder="harga">
+              </div>
+              <div class="form-group">
+                  <label for="jumlah">Jumlah</label>
+                  <input name="jumlah" type="number" class="form-control" placeholder="jumlah" value = 0>
+              </div>
+              <div class="form-group">
+                <label for="gambar">File input</label>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input name="gambar" type="file" class="custom-file-input" >
+                    <label class="custom-file-label" for="gambar">Choose file</label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                  <label for="keterangan">Keterangan</label>
+                  <!-- <input type="comment" class="form-control" id="keterangan" placeholder="keterangan"> -->
+                  <textarea name="keterangan" class="form-control" rows="4" cols="50" name="comment" placeholder="tulis keterangan disini..."></textarea>
+              </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary" >Tambah</button>
+            </div>
+          </form>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 
     <!-- modal edit produk-->
     <div class="modal fade" id="modalEditProduk">

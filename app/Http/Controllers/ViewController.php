@@ -64,6 +64,7 @@ class ViewController extends Controller
         if(!Session::get('login')){
             return redirect('login')->with('error','Anda harus login dulu');
         }
+
         return view('content.detailProduk');
     }
 

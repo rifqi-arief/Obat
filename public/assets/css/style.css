@@ -47,6 +47,10 @@
   display:-ms-flexbox!important;
 }
 
+.st-footer-keranjang{
+  padding: 10px;
+}
+
 .quantity {
     position: relative;
   }

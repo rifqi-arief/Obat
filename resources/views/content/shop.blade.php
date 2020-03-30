@@ -7,7 +7,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Shop</h1>
+                <h1>Shoping</h1>
             </div>
         </div>
     </div><!-- /.container-fluid -->
@@ -27,13 +27,13 @@
         <div class="card bg-light">
           <div class="card-header text-muted border-bottom-0">
             <!-- <input type="" id="id-produk" name="id_produk" value="{{$data_shop['produk'][$i]->id_produk}}" /> -->
-            <a href="#" class="nav-link">
+            <a href="/get-detail-produk/{{$data_shop['produk'][$i]->id_produk}}" class="nav-link">
               <h2 class="lead"><b>{{$data_shop['produk'][$i]->nama}}</b></h2>
             </a>
           </div>
           <div class="card-body pt-0">
             <div class="text-center">
-              <img src="{{ asset('/assets/img/user1-128x128.jpg') }}" alt="">
+              <img src="{{ asset($data_shop['produk'][$i]->gambar) }}" alt="">
             </div>
           </div>
           <div class="info-box">  
@@ -49,17 +49,17 @@
             </div>
           </div>
           <div class="card-footer">
-            <div class="text-right row">
-              <div>
-                <a href="#" class="btn btn-sm bg-teal st-btn-keranjang"> Detail </a>
+            <div class="row ">
+              <div class="col-auto mr-auto">
+                <button href="#" class="btn btn-sm btn-success st-footer-keranjang"> Detail </button>
               </div>
-              <div class="text-left row">
-                <div class="quantity">
-                  <input id="jumlah" type="number" min="1" step="1" value="1">                  
-                </div>
-                <Button id="add-keranjang" class="btn btn-sm btn-primary st-btn-keranjang"> Tambah keranjang </Button>
-              </div>
-            </div>
+              <div class="col-auto col-md-6">
+                  <div class="quantity" >
+                    <input id="jumlah" type="number" min="1" step="1" value="1">                  
+                  </div>
+                  <button id="add-keranjang" class="btn btn-sm btn-primary st-footer-keranjang" style="margin-left:10px;"> Tambah keranjang </Button>
+              </div> 
+            </div>              
           </div>
         </div>
       </div>

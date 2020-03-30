@@ -10,6 +10,7 @@ use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\ProdukModel;
+use Illuminate\Support\Facades\Session;
 
 class ProdukController extends Controller
 {
@@ -177,7 +178,7 @@ class ProdukController extends Controller
             return Datatables()->of($produk)
                     ->addColumn('gambar', function($produk){
                         $url= asset('storage/'.$produk->gambar);
-                        return '<img src="{{ url(\''.$produk->gambar.'\') }}" border="0" width="40" class="img-rounded" align="center" />';
+                        return '<img src="'.$produk->gambar.'" border="0" width="40" class="img-rounded" align="center" />';
                             })
                     ->addColumn('action', function($produk){
                         return '<a class="btn btn-primary modal-edit-produk" data-id="'.$produk->id_produk.'" href="#"><i class="fas fa-edit"></i></a>
@@ -205,12 +206,18 @@ class ProdukController extends Controller
 
     public function getDetailProduk($id_produk){
         try{
+            if(!Session::get('login')){
+                return redirect('login')->with('error','Anda harus login dulu');
+            }
+
             $query = "select * from produk where id_produk = '".$id_produk."' and deleted_at is null limit 1";
             
             $produk = DB::select($query);
 
-            return json_encode($produk);
+            // return json_encode($produk);
     
+            return view('content.detailProduk')->with('data', $produk);
+        
         }catch(\Exception $ex){
             return $ex->getMessage();
         }
